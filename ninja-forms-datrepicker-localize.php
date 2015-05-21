@@ -27,17 +27,35 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 class NF_Datepicker_Localize
 {
+    public $file_name;
+
+    private $locale;
+
     public function __construct()
     {
-        add_action( 'ninja_forms_display_js', array( $this, 'scripts' ), 8 );
+        $this->locale = get_locale();
+        add_action( 'ninja_forms_display_js', array( $this, 'localize' ), 8 );
     }
 
-    public function scripts()
+    public function localize()
     {
+        switch( $this->locale ) {
+            case 'de_DE':
+                $this->file_name = 'ninja-forms-datepicker-localize-de_DE.js';
+                break;
+            case 'en_US':
+                $this->file_name = 'ninja-forms-datepicker-localize-en_US.js';
+                break;
+            default:
+                //TODO: Add debug message if localization is not found.
+                return;
+        }
+
         wp_enqueue_script(
             'nf-datepicker-localize',
-            plugin_dir_url( __FILE__ ) . 'ninja-forms-datepicker-localize.js',
-            array( 'jquery', 'jquery-ui-core', 'jquery-ui-datepicker' ) );
+            plugin_dir_url(__FILE__) . 'js/' . $this->file_name,
+            array('jquery', 'jquery-ui-core', 'jquery-ui-datepicker')
+        );
     }
 }
 
