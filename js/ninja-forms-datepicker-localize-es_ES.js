@@ -2,7 +2,7 @@ jQuery(document).ready( function() {
     jQuery.datepicker.setDefaults(
         {
 
-            closeText: 'Close',
+            closeText: 'Cerrar',
             prevText: 'Ant',
             nextText: 'Sig',
             currentText: 'Hoy',
