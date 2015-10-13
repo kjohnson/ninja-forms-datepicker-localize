@@ -45,6 +45,9 @@ class NF_Datepicker_Localize
                 break;
             case 'en_US':
                 $this->file_name = 'ninja-forms-datepicker-localize-en_US.js';
+                break; 
+            case 'es_ES':
+                $this->file_name = 'ninja-forms-datepicker-localize-es_ES.js';
                 break;
             default:
                 //TODO: Add debug message if localization is not found.
